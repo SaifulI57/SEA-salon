@@ -1,0 +1,27 @@
+services:
+    backend:
+        platform: linux/amd64
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 3000:3000
+        env_file:
+            - .env
+        depends_on:
+            - postgres
+        restart: always
+    postgres:
+        image: postgres
+        ports:
+            - 6576:6576
+        environment:
+            - POSTGRES_DB=prod
+            - POSTGRES_USER=salon
+            - POSTGRES_PASSWORD=compfest
+            - PGPORT=6576
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        restart: always
+volumes:
+    postgres-data:

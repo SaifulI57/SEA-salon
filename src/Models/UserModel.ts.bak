@@ -1,0 +1,132 @@
+// import User from '../Schema/UserSchema';
+// import app from '../utils/Surrelsc';
+
+// const db = await app.init();
+// /**
+//  * Creates a new user in the database.
+//  * @param {User} user - The user object containing user details.
+//  * @returns {Promise<boolean>} A promise that resolves to true if user creation was successful, false otherwise.
+//  */
+// const createUser = async (user: User): Promise<boolean> => {
+//     try {
+//         const id = await db.query('RETURN rand::guid(8)');
+//         const query = `CREATE ${user.role}:${id} SET username=$username, firstName=$firstName, lastName=$lastName, email=$email, password=$password, gender=$gender, domicile=$domicile`;
+//         const cUser = await db.query(query, {
+//             ...user,
+//             id: id
+//         });
+//         console.log(!cUser);
+//         return !!cUser;
+//     } catch (e) {
+//         console.error(`Error creating ${user.role}`, e);
+//         return false;
+//     }
+// };
+
+// /**
+//  * Updates a user in the database.
+//  * @param {string} id - The ID of the user to update.
+//  * @param {User} user - The updated user object.
+//  * @returns {Promise<boolean>} A promise that resolves to true if user update was successful, false otherwise.
+//  */
+// const updateUser = async (id: string, user: User): Promise<boolean> => {
+//     try {
+//         const query = `UPDATE ${user.role}:${id} SET username=$username, firstName=$firstName, lastName=$lastName, email=$email, password=$password, gender=$gender, domicile=$domicile`;
+//         const uUser = await db.query(query, {
+//             ...user,
+//             id: id
+//         });
+//         return !!uUser;
+//     } catch (e) {
+//         console.log(`Error updating ${user.role}`, e);
+//         return false;
+//     }
+// };
+
+// /**
+//  * Retrieves all users of a specified role from the database.
+//  * @param {string} role - The role of the users to retrieve (e.g., 'admin', 'customer').
+//  * @returns {Promise<any[]>} A promise that resolves to an array of user objects.
+//  */
+// const getAllUsers = async (role: string): Promise<any[]> => {
+//     try {
+//         const gAUser = await db.query('SELECT * FROM $role', { role });
+//         return gAUser || [];
+//     } catch (e) {
+//         console.error(`Error retrieving ${role}`, e);
+//         return [];
+//     }
+// };
+
+// /**
+//  * Retrieves a user by their ID and role from the database.
+//  * @param {string} id - The ID of the user to retrieve.
+//  * @param {string} role - The role of the user to retrieve (e.g., 'admin', 'customer').
+//  * @returns {Promise<any[]>} A promise that resolves to the user object.
+//  */
+// const getUser = async (id: string, role: string): Promise<any[]> => {
+//     try {
+//         const gUser = await db.query('SELECT * FROM $role WHERE id = $id', { id, role });
+//         return gUser || [];
+//     } catch (e) {
+//         console.error(`Error retrieving ${role}`, e);
+//         return [];
+//     }
+// };
+
+// const getUsername = async (username: string, role: string): Promise<unknown[]> => {
+//     try {
+//         const gUsn = await db.query('SELECT * FROM $role WHERE username = $username', {
+//             username: username,
+//             role: role
+//         });
+
+//         return gUsn;
+//     } catch (e) {
+//         console.error('Error while retrieving username', e);
+//         return [];
+//     }
+// };
+
+// const existingUser = async (username: string, email: string, role: string): Promise<boolean> => {
+//     try {
+//         const eUserName = await db.query('SELECT * FROM $role WHERE username = $username', { username: username, role: role });
+//         const eUserEmail = await db.query('SELECT * FROM $role WHERE email = $email', {
+//             email: email,
+//             role: role
+//         });
+
+//         let exUsn = app.cek_null(eUserName);
+//         let exMail = app.cek_null(eUserEmail);
+
+//         return exUsn || exMail ? true : false;
+//     } catch (e) {
+//         console.error('Failed to check existing User');
+//         return false;
+//     }
+// };
+
+// /**
+//  * Deletes a user from the database by their ID.
+//  * @param {string} id - The ID of the user to delete.
+//  * @returns {Promise<boolean>} A promise that resolves to true if deletion was successful, false otherwise.
+//  */
+// const deleteUser = async (id: string): Promise<boolean> => {
+//     try {
+//         const dUser = await db.delete(id);
+//         return !!dUser;
+//     } catch (e) {
+//         console.error(`Error deleting ${id}`, e);
+//         return false;
+//     }
+// };
+
+// export default {
+//     createUser,
+//     updateUser,
+//     getAllUsers,
+//     getUser,
+//     deleteUser,
+//     existingUser,
+//     getUsername
+// };
