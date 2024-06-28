@@ -1,4 +1,4 @@
-import { User, Branch, Service } from "@prisma/client";
+import { User, Branch, Service } from '@prisma/client';
 
 export default interface Reserve {
     id: string;

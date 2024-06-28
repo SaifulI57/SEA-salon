@@ -23,14 +23,30 @@ model User {
 
 model Reserve {
   id        String   @id @default(cuid())
+  name      String
   duration  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  startTime DateTime
+  endTime   DateTime
   user      User     @relation(fields: [userId], references: [id])
   userId    String
   branch    Branch   @relation(fields: [branchId], references: [id])
   branchId  String
+  service   Service  @relation(fields: [serviceId], references: [id])
+  serviceId String
   reviews   Review[]
+}
+
+model Service {
+  id          String    @id @default(cuid())
+  name        String
+  price       String
+  duration    Int
+  description String
+  branchId    String
+  branch      Branch    @relation(fields: [branchId], references: [id])
+  reserves    Reserve[]
 }
 
 model Review {
@@ -53,16 +69,6 @@ model Branch {
   contactEmail String
   services     Service[]
   reserves     Reserve[]
-}
-
-model Service {
-  id          String  @id @default(cuid())
-  name        String  @unique
-  description String?
-  price       Int
-  duration    Int
-  Branch      Branch? @relation(fields: [branchId], references: [id])
-  branchId    String?
 }
 
 enum Role {
