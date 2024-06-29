@@ -6,7 +6,7 @@ const app = new Hono();
 
 app.post('/', authMiddleware, Service.createServices);
 app.put('/', authMiddleware, Service.updateServices);
-app.get('/', authMiddleware, Service.getServicesName);
+app.get('/', Service.getServicesName);
 app.delete('/', authMiddleware, Service.deleteServices);
 
 export default app;

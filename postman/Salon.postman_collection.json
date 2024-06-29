@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "f62550e8-841d-40ed-874b-149e0b0e60c8",
+		"name": "Salon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"{{username_admin}}1ww2\",\r\n    \"password\": \"{{password_admin}}\",\r\n    \"email\": \"{{$randomEmail}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/181b4bbe/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"181b4bbe",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"{{username_admin}}\",\r\n    \"password\": \"{{password_admin}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/181b4bbe/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"181b4bbe",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "enc",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"plaintext\": \"{{test_enc}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/crypto/enc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"enc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dec",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token_admin}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"encryptData\": \"{{test_dec}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/crypto/dec",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"dec"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get service by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/feature/service?name=\"2cesratinnuts\"",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"feature",
+						"service"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "\"2cesratinnuts\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get branch by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/feature/branch?name=yogya",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"feature",
+						"branch"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "yogya"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "member login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"poks\",\r\n    \"password\": \"manes\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/area/member/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"area",
+						"member",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "member regis",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"poks\",\r\n    \"password\": \"manes\",\r\n    \"email\": \"kiko@manse.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/area/member/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"area",
+						"member",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create branch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNseHk2a3k2MDAwMDAxM3BwdjNzMHQxd2oiLCJ1c2VybmFtZSI6InBva3MiLCJyb2xlIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MTk1NDgxNzMsImV4cCI6MTcxOTU1MTc3M30.AuTG9LMNz_gcSXDJVytLRUnLUM2fpnVGlxiLJoXyy5s",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"ikuya huji kibi kiri Jogja\",\r\n    \"address\": \"Jogja\",\r\n    \"contact_phone\": \"09182841\",\r\n    \"contact_email\": \"sdwasdw@fawdsad.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/feature/branch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"feature",
+						"branch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create branch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNseHk3MGp5cTAwMDB4NzVocTVsbXAxMWkiLCJ1c2VybmFtZSI6InBva3NhZG1pbjIxIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzE5NTg1MTY2LCJleHAiOjE3MTk1ODg3NjZ9.FYzYS_7FYyj5cvYEiKm1grLfoZXhRVDxkJZ7X8ufkQE",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"yogya\",\r\n    \"address\": \"jl mangunsari\",\r\n    \"contact_phone\": \"93827147321\",\r\n    \"contact_email\": \"asdaea@email.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/feature/branch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"feature",
+						"branch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create service",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNseHk3MGp5cTAwMDB4NzVocTVsbXAxMWkiLCJ1c2VybmFtZSI6InBva3NhZG1pbjIxIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzE5NTg1MTY2LCJleHAiOjE3MTk1ODg3NjZ9.FYzYS_7FYyj5cvYEiKm1grLfoZXhRVDxkJZ7X8ufkQE",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"2cesratinnuts\",\r\n    \"description\": \"sdhasmspotoo\",\r\n    \"price\": 200,\r\n    \"duration\": 60,\r\n    \"branchId\": \"clxysmdga00015iozpsoooolj\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/feature/service",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"feature",
+						"service"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

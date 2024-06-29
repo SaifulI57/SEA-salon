@@ -7,6 +7,11 @@ interface ServiceRequest extends Omit<Service, 'branch'> {
     id?: string;
 }
 
+/**
+ * Creates a new service.
+ * @param {Context} c - The Hono context object.
+ * @returns {Promise<void>} A promise that resolves when the service creation process is complete.
+ */
 const createServices = async (c: Context) => {
     try {
         const { name, description, price, duration, branchId }: ServiceRequest = await c.req.json();
@@ -21,7 +26,7 @@ const createServices = async (c: Context) => {
             price,
             duration
         };
-
+        console.log(branchId);
         const createSer = await ServiceM.createService(branchId!, serviceData);
 
         return createSer ? c.json({ message: 'Successfully created Service' }, 201) : c.json({ message: 'Failed to create Service' }, 500);
@@ -31,6 +36,11 @@ const createServices = async (c: Context) => {
     }
 };
 
+/**
+ * Updates an existing service.
+ * @param {Context} c - The Hono context object.
+ * @returns {Promise<void>} A promise that resolves when the service update process is complete.
+ */
 const updateServices = async (c: Context) => {
     try {
         const { id, name, description, price, duration, branchId }: ServiceRequest = await c.req.json();
@@ -59,6 +69,11 @@ const updateServices = async (c: Context) => {
     }
 };
 
+/**
+ * Retrieves a service by its name.
+ * @param {Context} c - The Hono context object.
+ * @returns {Promise<void>} A promise that resolves when the service retrieval process is complete.
+ */
 const getServicesName = async (c: Context) => {
     try {
         let name = c.req.query('name')!;
@@ -71,6 +86,11 @@ const getServicesName = async (c: Context) => {
     }
 };
 
+/**
+ * Deletes an existing service.
+ * @param {Context} c - The Hono context object.
+ * @returns {Promise<void>} A promise that resolves when the service deletion process is complete.
+ */
 const deleteServices = async (c: Context) => {
     try {
         const { id }: { id: string } = await c.req.json();

@@ -1,6 +1,5 @@
-import { PrismaClient, Reserve as PrismaReserve } from '@prisma/client';
+import { PrismaClient, Reserve as PrismaReserve, Review } from '@prisma/client';
 import Reserve from '../Schema/ReserveSchema';
-
 
 const prisma = new PrismaClient();
 
@@ -9,17 +8,32 @@ const prisma = new PrismaClient();
  * @param {Partial<PrismaReserve>} reserveData - The reserve data object containing details of the reserve.
  * @returns {Promise<boolean>} A promise that resolves to true if reserve creation was successful, false otherwise.
  */
-export const createReserve = async (reserveData: Reserve): Promise<boolean> => {
+const createReserve = async (branchId: string, userId: string, serviceId: string, reserveData: Reserve): Promise<boolean> => {
     try {
+        let data: any = {
+            id: reserveData.id,
+            duration: reserveData.duration,
+            createdAt: reserveData.createdAt,
+            updatedAt: reserveData.updatedAt
+        };
+
+        if (branchId) {
+            data.branch = {
+                connect: { id: branchId }
+            };
+        }
+        if (userId) {
+            data.branch = {
+                connect: { id: userId }
+            };
+        }
+        if (serviceId) {
+            data.branch = {
+                connect: { id: serviceId }
+            };
+        }
         const createdReserve = await prisma.reserve.create({
-            data: {
-                id: reserveData.id,
-                duration: reserveData.duration,
-                createdAt: reserveData.createdAt,
-                updatedAt: reserveData.updatedAt,
-                userId: reserveData.customer.id,
-                branchId: reserveData.branch.id,
-            }
+            data: data
         });
         return !!createdReserve;
     } catch (error) {
@@ -34,18 +48,36 @@ export const createReserve = async (reserveData: Reserve): Promise<boolean> => {
  * @param {Partial<PrismaReserve>} reserveData - The reserve data object containing updated details of the reserve.
  * @returns {Promise<boolean>} A promise that resolves to true if reserve update was successful, false otherwise.
  */
-export const updateReserve = async (id: string, reserveData: Reserve): Promise<boolean> => {
+const updateReserve = async (review: Review, branchId: string, userId: string, serviceId: string, id: string, reserveData: Reserve): Promise<boolean> => {
     try {
+        let data: any = {
+            id: reserveData.id,
+            duration: reserveData.duration,
+            createdAt: reserveData.createdAt,
+            updatedAt: reserveData.updatedAt
+        };
+
+        if (branchId) {
+            data.branch = {
+                connect: { id: branchId }
+            };
+        }
+        if (userId) {
+            data.branch = {
+                connect: { id: userId }
+            };
+        }
+        if (serviceId) {
+            data.branch = {
+                connect: { id: serviceId }
+            };
+        }
+        if (review) {
+            data.review = review;
+        }
         const updatedReserve = await prisma.reserve.update({
             where: { id: id },
-            data: {
-                id: reserveData.id,
-                duration: reserveData.duration,
-                createdAt: reserveData.createdAt,
-                updatedAt: reserveData.updatedAt,
-                userId: reserveData.customer.id,
-                branchId: reserveData.branch.id,
-            }
+            data: data
         });
         return !!updatedReserve;
     } catch (error) {
@@ -59,7 +91,7 @@ export const updateReserve = async (id: string, reserveData: Reserve): Promise<b
  * @param {string} id - The ID of the reserve to delete.
  * @returns {Promise<boolean>} A promise that resolves to true if deletion was successful, false otherwise.
  */
-export const deleteReserve = async (id: string): Promise<boolean> => {
+const deleteReserve = async (id: string): Promise<boolean> => {
     try {
         const deletedReserve = await prisma.reserve.delete({
             where: { id: id }
@@ -71,11 +103,26 @@ export const deleteReserve = async (id: string): Promise<boolean> => {
     }
 };
 
+const getReserve = async (name: string): Promise<PrismaReserve | null> => {
+    try {
+        const getR = await prisma.reserve.findUnique({
+            where: {
+                name: name
+            }
+        });
+
+        return getR;
+    } catch (e) {
+        console.error('Failed to retrieve reservation', e);
+        return null;
+    }
+};
+
 /**
  * Retrieves all reserves from the database.
  * @returns {Promise<PrismaReserve[]>} A promise that resolves to an array of reserve objects.
  */
-export const getAllReserves = async (): Promise<PrismaReserve[]> => {
+const getAllReserves = async (): Promise<PrismaReserve[]> => {
     try {
         const reserves = await prisma.reserve.findMany();
         return reserves;
@@ -83,4 +130,12 @@ export const getAllReserves = async (): Promise<PrismaReserve[]> => {
         console.error('Error fetching reserves:', error);
         throw new Error('Error fetching reserves');
     }
+};
+
+export default {
+    createReserve,
+    updateReserve,
+    deleteReserve,
+    getAllReserves,
+    getReserve
 };

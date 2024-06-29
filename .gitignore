@@ -100,7 +100,6 @@ web_modules/
 
 # dotenv environment variable files
 
-.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -167,9 +166,13 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-.env
 # IntelliJ based IDEs
 .idea
 
 # Finder (MacOS) folder config
 .DS_Store
+
+.prettierrc
+seed.ts
+test.ts
+.vscode

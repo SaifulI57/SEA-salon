@@ -1,9 +1,9 @@
-export interface Review {
+export default interface Review {
     id: string;
     createdAt: Date;
     updatedAt: Date;
     rating: number;
-    comment?: string;
+    comment?: string | null;
     userId: string;
     reserveId: string;
 }
