@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'rocket';
+    src: url('./lib/Rocket_Thunder.otf');
+}
+
+@font-face {
+    font-family: 'syne';
+    src: url('./lib/Syne.ttf');
+}
+@font-face {
+    font-family: 'lecker';
+    src: url('./lib/LeckerliOne-Regular.ttf');
+}
+
+html {
+    scroll-behavior: smooth;
+}

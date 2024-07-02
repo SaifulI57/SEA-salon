@@ -160,7 +160,7 @@ dist
 .vscode-test
 
 # yarn v2
-
+frontend/node_modules
 .yarn/cache
 .yarn/unplugged
 .yarn/build-state.yml
