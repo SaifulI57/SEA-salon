@@ -19,6 +19,8 @@ http://175.41.168.31:4173/
 
 or
 
+(sea salon)[https://sea-salon.unbound.my.id/]
+
 ```bash
 https://sea-salon.unbound.my.id/
 ```
