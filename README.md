@@ -1,8 +1,21 @@
-**Sorry sir still skill issue, masih seadanya😞** **Maaf kalau banyak gaya pake docker**
+**Sorry sir still skill issue, masih seadanya😞**
+
+**Maaf kalau banyak gaya pake docker**
 
 # Deployment
 
 backend:
+
+```bash
+http://175.41.168.31:3000/
+```
+
+frontend:
+
+```bash
+
+http://175.41.168.31:4173/
+```
 
 # How to Deploy
 
@@ -68,5 +81,19 @@ bunx prisma migrate --name ok
 start:
 
 ```bash
+bun run dev
+```
+
+start frontend:
+
+```bash
+cd frontend
+npm run dev
+```
+
+or
+
+```bash
+cd frontend
 bun run dev
 ```
