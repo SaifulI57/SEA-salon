@@ -17,6 +17,14 @@ frontend:
 http://175.41.168.31:4173/
 ```
 
+or
+
+```bash
+https://sea-salon.unbound.my.id/
+```
+
+
+
 # How to Deploy
 
 ```bash
